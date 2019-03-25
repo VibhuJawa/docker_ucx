@@ -6,15 +6,15 @@ RUN apt install -y autoconf
 RUN source activate ${CONDA_ENV} && conda install jupyterlab bokeh
 RUN source activate ${CONDA_ENV} && pip install cupy-cuda92
 
-ADD dask-cudf /dask-cudf
-RUN git clone https://github.com/rapidsai/dask-cudf /dask-cudf
-WORKDIR /dask-cudf
-RUN source activate ${CONDA_ENV} && python setup.py install
+# ADD dask-cudf /dask-cudf
+# RUN git clone https://github.com/rapidsai/dask-cudf /dask-cudf
+# WORKDIR /dask-cudf
+# RUN source activate ${CONDA_ENV} && python setup.py install
 
-RUN git clone https://github.com/rapidsai/dask-cuda /dask-cuda
-ADD dask-cudf /dask-cuda
-WORKDIR /dask-cuda
-RUN source activate ${CONDA_ENV} && python setup.py install
+# RUN git clone https://github.com/rapidsai/dask-cuda /dask-cuda
+# ADD dask-cudf /dask-cuda
+# WORKDIR /dask-cuda
+# RUN source activate ${CONDA_ENV} && python setup.py install
 
 #ADD gdrcopy /gdrcopy
 #WORKDIR /gdrcopy
