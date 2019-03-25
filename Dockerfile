@@ -1,6 +1,5 @@
-FROM cudf
-
-ENV CONDA_ENV=cudf
+From rapidsai-nightly:latest
+ENV CONDA_ENV=rapids
 
 RUN apt install -y autoconf
 
@@ -8,11 +7,11 @@ RUN source activate ${CONDA_ENV} && conda install jupyterlab bokeh
 RUN source activate ${CONDA_ENV} && pip install cupy-cuda92
 
 ADD dask-cudf /dask-cudf
-#RUN git clone https://github.com/rapidsai/dask-cudf /dask-cudf
+RUN git clone https://github.com/rapidsai/dask-cudf /dask-cudf
 WORKDIR /dask-cudf
 RUN source activate ${CONDA_ENV} && python setup.py install
 
-#RUN git clone https://github.com/rapidsai/dask-cuda /dask-cuda
+RUN git clone https://github.com/rapidsai/dask-cuda /dask-cuda
 ADD dask-cudf /dask-cuda
 WORKDIR /dask-cuda
 RUN source activate ${CONDA_ENV} && python setup.py install
@@ -24,6 +23,7 @@ RUN source activate ${CONDA_ENV} && python setup.py install
 # setup ucx
 # ucx-py cloned into ucx-dev-env locally
 ADD ucx-dev-env /ucx-dev-env
+RUN git clone https://github.com/TomAugspurger/ucx-dev-env.git
 WORKDIR /ucx-dev-env
 RUN make repos
 RUN source activate ${CONDA_ENV} && make env
