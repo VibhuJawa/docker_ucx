@@ -1,6 +1,7 @@
-From rapidsai-nightly:latest
+From rapidsai/rapidsai-nightly:latest
 ENV CONDA_ENV=rapids
 
+RUN apt-get update
 RUN apt install -y autoconf
 
 RUN source activate ${CONDA_ENV} && conda install jupyterlab bokeh
@@ -16,15 +17,20 @@ RUN source activate ${CONDA_ENV} && pip install cupy-cuda92
 # WORKDIR /dask-cuda
 # RUN source activate ${CONDA_ENV} && python setup.py install
 
-#ADD gdrcopy /gdrcopy
-#WORKDIR /gdrcopy
-#RUN make PREFIX=. CUDA=/usr/local/cuda all install
+# ADD gdrcopy /gdrcopy
+# WORKDIR /gdrcopy
+# RUN make PREFIX=. CUDA=/usr/local/cuda all install
+
+# Todo remove this:
+# RUN git config --global user.email vibhujawa@gmail.com
+
 
 # setup ucx
-# ucx-py cloned into ucx-dev-env locally
+# TODO remove this: ucx-py cloned into ucx-dev-env locally
+# RUN git clone https://github.com/TomAugspurger/ucx-dev-env.git
 ADD ucx-dev-env /ucx-dev-env
-RUN git clone https://github.com/TomAugspurger/ucx-dev-env.git
-WORKDIR /ucx-dev-env
+# RUN git clone https://github.com/TomAugspurger/ucx-dev-env.git
+WORKDIR ucx-dev-env
 RUN make repos
 RUN source activate ${CONDA_ENV} && make env
 RUN source activate ${CONDA_ENV} && make deps
