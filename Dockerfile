@@ -30,7 +30,7 @@ RUN source activate ${CONDA_ENV} && pip install cupy-cuda92
 # RUN git clone https://github.com/TomAugspurger/ucx-dev-env.git
 ADD ucx-dev-env /ucx-dev-env
 # RUN git clone https://github.com/TomAugspurger/ucx-dev-env.git
-WORKDIR ucx-dev-env
+WORKDIR /ucx-dev-env
 RUN make repos
 RUN source activate ${CONDA_ENV} && make env
 RUN source activate ${CONDA_ENV} && make deps
