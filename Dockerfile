@@ -1,4 +1,4 @@
-From rapidsai/rapidsai-nightly:latest
+From rapidsai/rapidsai-nightly:0.6-cuda9.2-base-ubuntu16.04-gcc5-py3.7
 ENV CONDA_ENV=rapids
 
 RUN apt-get update
