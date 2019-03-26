@@ -1,3 +1,3 @@
-docker run --net=host --privileged -p 8888:8888 -p 8787:8787 \
-  -v /raid:/data -v /home/rgelhausen/projects/notebooks:/notebooks
-  -it ucx bash
+docker run --runtime=nvidia --rm -it -p 9888:9888 -p 9787:9787 -p 9786:9786  -p 9800:9800 \
+-v /raid/walmart/vibhu:/rapids/vibhu \
+-it docker_ucx

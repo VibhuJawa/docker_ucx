@@ -39,4 +39,4 @@ RUN source activate ${CONDA_ENV} && . activate_ && make build
 
 WORKDIR /notebooks
 CMD source activate ${CONDA_ENV} && . /ucx-dev-env/activate_ && \
-    jupyter-lab --allow-root --ip='0.0.0.0' --NotebookApp.token=''
+    jupyter-lab --allow-root --ip='0.0.0.0' --port=9888 --NotebookApp.token=''
